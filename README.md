@@ -14,10 +14,6 @@ This Express backend assignment involves building a RESTful API for a library ma
 
 For security, this API should implement user authentication using JSON Web Tokens (JWT). Each user should have a unique username and password OR broker authentication. Certain admin endpoints may require special privileges for access.
 
-## Minimum requirements
-
-Please check the REST API slides where you can find the minimum requirements of the project.
-
 ## Response Format
 
 All API responses should be provided in JSON format. A typical response should include a `status`, `data`, and an optional `message` field. The `status` field should indicate the success or failure of the request.
