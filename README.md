@@ -26,10 +26,6 @@ The API should include comprehensive error handling with clear and informative e
 
 Developers should conduct unit tests and integration tests to ensure the reliability and correctness of the API. Instructions for running the tests should be provided in the project's documentation.
 
-## Deployment
-
-The API should be deployed before the **`DEADLINE`** which is end of Week 47 24th of Nov
-
 
 This is my repository.
 npm install
