@@ -1,0 +1,305 @@
+openapi: 3.0.0
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/HAIDERALI_1/Ecommerce/1.0.0
+info:
+  description: This is a simple API
+  version: "1.0.0"
+  title: Simple Inventory API
+  contact:
+    email: you@your-company.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+tags:
+  - name: admins
+    description: Secured Admin-only calls
+  - name: developers
+    description: Operations available to regular developers
+paths:
+/users:
+    get:
+      summary: Get all users
+      description: Returns a list of all users
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+
+    post:
+      summary: Create a new user
+      description: Creates a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: User created successfully
+          content:
+            application/json:
+
+  /users/{userId}:
+    get:
+      summary: Get a user by ID
+      description: Returns a single user based on the provided ID
+      parameters:
+        - name: userId
+          in: path
+          description: ID of the user to retrieve data
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+
+        '404':
+          description: User not found
+
+    put:
+      summary: Update a user by ID
+      description: Updates an existing user with the provided data
+      parameters:
+        - name: userId
+          in: path
+          description: ID of the user to update
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: User updated successfully
+          content:
+            application/json:
+
+        '404':
+          description: User not found
+
+    delete:
+      summary: Delete a User by ID
+      description: Deletes a User based on the provided ID
+      parameters:
+        - name: userId
+          in: path
+          description: ID of the User to delete
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: User deleted successfully
+        '404':
+          description: User not found
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the user
+        email:
+          type: string
+          description: email of the user
+        password:
+          type: string
+          description: password of the user
+        role:
+          type: string
+          description: role by default User
+         
+          
+
+
+# previous code
+# swagger: '2.0'
+# info:
+#   version: 1.0.0
+#   title: User CRUD API
+#   description: API for managing user data
+
+# paths:
+#   /users:
+#     get:
+#       summary: Get all users
+#       description: Returns a list of all users
+#       produces:
+#         - application/json
+#       responses:
+#         200:
+#           description: Successful operation
+#           schema:
+#             type: array
+#             items:
+#               $ref: '#/components/schemas/User'
+#     post:
+#       summary: Create a new user
+#       description: Creates a new user 
+#       consumes:
+#         - application/json
+#       produces:
+#         - application/json
+#       parameters:
+#         - in: body
+#           name: user
+#           description: User object
+#           required: true
+#           schema:
+#             $ref: '#/components/schemas/User'
+#       responses:
+#         201:
+#           description: User created successfully
+#           schema:
+#             $ref: '#/components/schemas/User'
+
+#   /users/{userId}:
+#     get:
+#       summary: Get a user by ID
+#       description: Returns a single user based on the provided ID
+#       produces:
+#         - application/json
+#       parameters:
+#         - name: userId
+#           in: path
+#           description: ID of the user to retrieve data
+#           required: true
+#           type: integer
+#       responses:
+#         200:
+#           description: Successful operation
+#           schema:
+#             $ref: '#/components/schemas/User'
+#         404:
+#           description: User not found
+
+#     put:
+#       summary: Update a user by ID
+#       description: Updates an existing user with the provided data
+#       consumes:
+#         - application/json
+#       produces:
+#         - application/json
+#       parameters:
+#         - name: userId
+#           in: path
+#           description: ID of the user to update
+#           required: true
+#           type: integer
+#         - in: body
+#           name: user
+#           description: User object
+#           required: true
+#           schema:
+#             $ref: '#/schemas/userSchema'
+#       responses:
+#         200:
+#           description: User updated successfully
+#           schema:
+#             $ref: '#/components/schemas/User'
+#         404:
+#           description: User not found
+
+#     delete:
+#       summary: Delete a user by ID
+#       description: Deletes a user based on the provided ID
+#       produces:
+#         - application/json
+#       parameters:
+#         - name: userId
+#           in: path
+#           description: ID of the user to delete
+#           required: true
+#           type: integer
+#       responses:
+#         204:
+#           description: User deleted successfully
+#         404:
+#           description: User not found
+
+#   users/signup:
+#     post:
+#       summary: Register a new user
+#       requestBody:
+#         required: true
+#         content:
+#           application/json:
+#             schema:
+#               type: object
+#               properties:
+#                 name:
+#                   type: string
+#                   description: username of the user.
+#                 email:
+#                   type: string
+#                   description: email of the user.
+#                 password:
+#                   type: string
+#                   format: password
+#                   description: password for the user.
+#               required:
+#                 - username
+#                 - email
+#                 - password
+#       responses:
+#         '201':
+#           description: User successfully registered/created.
+#         '400':
+#           description: Bad request. Check the request body for errors.
+
+#   users/login:
+#     post:
+#       summary: User login
+#       requestBody:
+#         required: true
+#         content:
+#           application/json:
+#             schema:
+#               type: object
+#               properties:
+#                 email:
+#                   type: string
+#                   description: email of the user.
+#                 password:
+#                   type: string
+#                   format: password
+#                   description: The password for the user.
+#               required:
+#                 - email
+#                 - password
+#       responses:
+#         '200':
+#           description: User successfully logged in.
+#         '401':
+#           description: Unauthorized. Invalid credentials.
+#         '400':
+#           description: Bad request. Check the request body for errors.
+
+# definitions:
+#   User:
+#     type: object
+#     properties:
+#       # id:
+#       #   type: integer
+#       name:
+#         type: string
+#       email:
+#         type: string
+#       password:
+#         type: string
+#     required:
+#       - name
+#       - email

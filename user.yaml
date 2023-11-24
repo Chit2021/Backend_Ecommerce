@@ -1,0 +1,155 @@
+openapi: 3.0.0
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/HAIDERALI_1/Ecommerce/1.0.0
+info:
+  description: This is a simple API
+  version: "1.0.0"
+  title: Simple Inventory API
+  contact:
+    email: you@your-company.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+tags:
+  - name: admins
+    description: Secured Admin-only calls
+  - name: developers
+    description: Operations available to regular developers
+paths:
+  /users/offset:
+    get:
+     responses:
+       '200':
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+                  
+       '501':
+          description: internal server error
+        
+    parameters:
+        - in: query
+          name: pageNumber
+          description: pageNumber for Pagination
+          required: false
+          schema:
+            type: integer
+            format: int32
+            minimum: 0
+        - in: query
+          name: pageSize
+          description: pageSize for pagination
+          schema:
+            type: integer
+            format: int32
+            minimum: 0
+            
+  
+  /users:
+    get:
+     responses:
+       '200':
+          description: get all users list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+                  
+       '501':
+          description: internal server error
+    post: 
+      responses:
+        '201':
+          description: creates new user
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/User'
+                  
+        '501':
+          description: internal server error
+      requestBody:
+        content:
+          application/json:
+            schema:  
+              type: object
+              properties:
+                name:
+                  type: string
+      
+    
+  /users/{userId}:
+    put: 
+      parameters:
+        - name: id
+          in: path
+          description: ID of the resource to be updated
+          required: true
+          schema:
+            type: string  # Assuming the ID is a string, adjust as needed
+      responses:
+        '200':
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:  
+                type: object
+                properties:
+                  message:
+                    type: string
+                  
+        '501':
+          description: internal server error
+        '404':
+          description: Resource not found
+          content:
+            application/json:
+              example:
+                code: 404
+                error: "User not found"
+      requestBody:
+        content:
+          application/json:
+            schema:  
+              type: object
+              properties:
+                name:
+                  type: string
+                  
+    delete: 
+      parameters:
+        - name: userId
+          in: path
+          description: ID of the resource to be deleted
+          required: true
+          schema:
+            type: string  # Assuming the ID is a string, adjust as needed
+      responses:
+        '200':
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:  
+                type: object
+                properties:
+                  message:
+                    type: string
+                  
+        '501':
+          description: internal server error
+        '404':
+          description: Resource not found
+          content:
+            application/json:
+              example:
+                code: 404
+                error: "User not found"
